@@ -14,14 +14,12 @@ students = [
 #let's define our methods
 
 def print_header
-	puts "The students of my cohort at Makers Academy"
-	puts "------------"
+puts "The students of my cohort at Makers Academy/n"
+puts "------------"
 end
 
 def print(students)
-	students.each do |student|
-	puts "#{student[:name]} (#{student[:cohort]} cohort)"
-	end
+	students.each_with_index {|student,index| puts "#{index+1}. #{student[:name]} (#{student[:cohort]} cohort)" }
 end
 
 def print_footer (names)
