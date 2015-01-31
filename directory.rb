@@ -14,21 +14,21 @@ students = [
 #let's define our methods
 
 def print_header
-puts "The students of my cohort at Makers Academy/n"
-puts "------------"
+puts "The students of my cohort at Makers Academy".center(50)
+puts "------------".center(50)
 end
 
 def print(students)
-	students.each_with_index {|student,index| puts "#{index+1}. #{student[:name]} (#{student[:cohort]} cohort)" }
+	students.each_with_index {|student,index| puts "#{index+1}. #{student[:name]} (#{student[:cohort]} cohort)".center(50) }
 end
 
 def print_footer (names)
-	puts "Overall, we have #{names.length} great students"
+	puts "Overall, we have #{names.length} great students".center(50)
 end
 
 def input_students
-	puts "Please enter the names of the students"
-	puts "To finish, just hit return twice"
+	puts "Please enter the names of the students".center(50)
+	puts "To finish, just hit return twice".center(50)
 	# create and empty array
 	students = []
 	#gets the first name
@@ -37,7 +37,8 @@ def input_students
 	while !name.empty? do
 		# add the student hash to the array
 		students << {:name => name, :cohort => :november}
-		puts "Now we have #{students.length} students"
+		puts "Now we have 1 student".center(50) if students.length == 1
+		puts "Now we have #{students.length} students".center(50) if students.length > 1
 		# get another name from the user
 		name = gets.chomp
 	end
