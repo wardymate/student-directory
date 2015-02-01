@@ -1,18 +1,5 @@
 @students = [] # an empty array accessible to all methods
 
-# let's put all students into a hash
-students = [
-{:name => "Dr. Hannibal Lecter", :cohort => :november},
-{:name => "Darth Vader", :cohort => :november},
-{:name => "Nurse Ratched", :cohort => :november},
-{:name => "Michael Corleone", :cohort => :november},
-{:name => "Alex De large", :cohort => :november},
-{:name => "The Alien", :cohort => :november},
-{:name => "Terminator", :cohort => :november},
-{:name => "Freddy Kruger", :cohort => :november},
-{:name => "The Joker", :cohort => :november},
-]
-
 #let's define our methods
 
 def print_header
@@ -32,7 +19,7 @@ def input_students
 	puts "Please enter the names of the students".center(50)
 	puts "To finish, just hit return twice".center(50)
 	#gets the first name
-	name = gets.chomp
+	name = STDIN.gets.chomp
 	#While the name is not empty, repeat this code
 	while !name.empty? do
 		# add the student hash to the array
@@ -40,7 +27,7 @@ def input_students
 		puts "Now we have 1 student".center(50) if @students.length == 1
 		puts "Now we have #{@students.length} students".center(50) if @students.length > 1
 		# get another name from the user
-		name = gets.chomp
+		name = STDIN.gets.chomp
 	end
 	# return the array of students
 	@students
@@ -49,7 +36,7 @@ end
 def interactive_menu
 	loop do
 		print_menu
-		process(gets.chomp)
+		process(STDIN.gets.chomp)
 	end
 end
 
@@ -105,6 +92,20 @@ def load_students(filename = "students.csv")
 	file.close
 end
 
+def try_load_students
+	filename = ARGV.first # first argument from the command line
+	return if filename.nil? # get out of the method if it isn't given
+	if File.exists?(filename) # if it exhists
+		load_students(filename)
+		puts "Loaded #{@students.length} from #{filename}"
+	else #if it doesn't exist
+		puts "sorry, #{filename} doesn't exist."
+		exit # quit the program
+	end
+end
+
+
+try_load_students
 interactive_menu
 
 
